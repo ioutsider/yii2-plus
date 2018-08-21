@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use Yii;
@@ -8,16 +9,19 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\MyForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\helpers\Url;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -28,12 +32,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
-                    [
+                        [
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                    [
+                        [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -93,7 +97,7 @@ class SiteController extends Controller
             $model->password = '';
 
             return $this->render('login', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -128,7 +132,7 @@ class SiteController extends Controller
             return $this->refresh();
         } else {
             return $this->render('contact', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -160,7 +164,7 @@ class SiteController extends Controller
         }
 
         return $this->render('signup', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -183,7 +187,7 @@ class SiteController extends Controller
         }
 
         return $this->render('requestPasswordResetToken', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -209,7 +213,25 @@ class SiteController extends Controller
         }
 
         return $this->render('resetPassword', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
+
+    public function actionMyform()
+    {
+//        echo $url = Url::toRoute(['product/view', 'id' => 42]);
+//        echo "<br/>";
+//        echo Yii::$app->urlManager->createUrl(['article/view', 'id' => 2222]);
+//        echo "<br/>";
+//        echo Yii::$app->urlManager->createAbsoluteUrl('article/view');
+//        die;
+        $model = new MyForm();
+        $model->name = "shao hang";
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            return $this->render('comfirm', ['model' => $model]);
+        }
+        return $this->render('myform', ['model' => $model]);
+    }
+
 }
