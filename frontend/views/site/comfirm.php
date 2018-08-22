@@ -5,3 +5,5 @@ echo "<pre>";
 echo $model->name;
 echo "\\\\";
 echo $model->email;
+
+//bug修改 issue-001
