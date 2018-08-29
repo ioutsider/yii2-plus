@@ -226,12 +226,17 @@ class SiteController extends Controller
 //        echo Yii::$app->urlManager->createAbsoluteUrl('article/view');
 //        die;
         $model = new MyForm();
-        $model->name = "shao hang";
+//        $model->name = "shao hang";
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             return $this->render('comfirm', ['model' => $model]);
         }
         return $this->render('myform', ['model' => $model]);
+    }
+
+    public function actionVue()
+    {
+        return $this->renderPartial('vue');
     }
 
 }
