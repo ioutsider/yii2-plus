@@ -1,15 +1,19 @@
 <?php
 //dev 分支
-
 //master 分支修改
-
 //解决冲突
 
 $this->title = "表单";
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+//echo Url::to(['post/view', 'id' => 100, 'pid' => 123], 'https');
+//echo "<br/>";
+//echo Url::base();
+//Url::remember();
+//echo Url::previous();
 $form = ActiveForm::begin();
 ?>
 
@@ -18,7 +22,15 @@ $form = ActiveForm::begin();
 <?= $form->field($model, 'email') ?>
 
 <div class="form-group">
-<?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>
+
+<?= Html::beginForm() ?>
+<?= Html::input('text', 'tel', '手机号',['class'=>'input']) ?><br/>
+<?= Html::activeInput('text', $model, 'name', ['class' =>'input']) ?>
+<br/>
+<?= Html::button('submit', ['class' => 'submit']) ?>
+<?=
+Html::endForm()?>

@@ -52,6 +52,7 @@ return [
             'showScriptName' => false,
             'suffix' => '.html',
             'rules' => [
+                'post/<id:\d+>' => 'post/view',
             ],
         ],
     ],
