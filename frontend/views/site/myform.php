@@ -24,3 +24,4 @@ $form = ActiveForm::begin();
 <div class="form-group">
     <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
 </div>
+
