@@ -24,13 +24,3 @@ $form = ActiveForm::begin();
 <div class="form-group">
     <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
 </div>
-
-<?php ActiveForm::end(); ?>
-
-<?= Html::beginForm() ?>
-<?= Html::input('text', 'tel', '手机号',['class'=>'input']) ?><br/>
-<?= Html::activeInput('text', $model, 'name', ['class' =>'input']) ?>
-<br/>
-<?= Html::button('submit', ['class' => 'submit']) ?>
-<?=
-Html::endForm()?>
