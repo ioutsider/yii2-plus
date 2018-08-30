@@ -26,11 +26,3 @@ $form = ActiveForm::begin();
 </div>
 
 <?php ActiveForm::end(); ?>
-
-<?= Html::beginForm() ?>
-<?= Html::input('text', 'tel', '手机号',['class'=>'input']) ?><br/>
-<?= Html::activeInput('text', $model, 'name', ['class' =>'input']) ?>
-<br/>
-<?= Html::button('submit', ['class' => 'submit']) ?>
-<?=
-Html::endForm()?>
