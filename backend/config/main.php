@@ -12,6 +12,14 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'sys*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@backend/messages',
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],

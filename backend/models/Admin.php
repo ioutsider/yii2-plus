@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\models;
 
 use Yii;
@@ -23,9 +24,9 @@ use yii\web\IdentityInterface;
  */
 class Admin extends ActiveRecord implements IdentityInterface
 {
+
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-
 
     /**
      * {@inheritdoc}
@@ -51,8 +52,22 @@ class Admin extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+                [['username', 'email', 'auth_key', 'password_hash'], 'required'],
+                [['username', 'email'], 'string', 'max' => 128],
+                [['auth_key'], 'string', 'max' => 32],
+                [['password_hash', 'password_reset_token'], 'string', 'max' => 255],
+                ['status', 'default', 'value' => self::STATUS_ACTIVE],
+                ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('sys', 'username'),
+            'email' => Yii::t('sys', 'Email'),
+            'status' => Yii::t('sys', 'Status'),
+            'created_at' => Yii::t('sys', 'Created At'),
         ];
     }
 
@@ -96,8 +111,8 @@ class Admin extends ActiveRecord implements IdentityInterface
         }
 
         return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+                    'password_reset_token' => $token,
+                    'status' => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -186,4 +201,5 @@ class Admin extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
 }
