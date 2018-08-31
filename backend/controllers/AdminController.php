@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
 use backend\models\AuthItem;
@@ -30,6 +31,41 @@ class AdminController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                        [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['indexAdmin'],
+                    ],
+                        [
+                        'allow' => true,
+                        'actions' => ['view'],
+                        'roles' => ['viewAdmin'],
+                    ],
+                        [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['createAdmin'],
+                    ],
+                        [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'roles' => ['updateAdmin'],
+                    ],
+                        [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['deleteAdmin'],
+                    ],
+                        [
+                        'allow' => true,
+                        'actions' => ['privilege'],
+                        'roles' => ['privilegeAdmin'],
+                    ],
                 ],
             ],
         ];
@@ -70,9 +106,9 @@ class AdminController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('createAdmin')) {
-            throw new ForbiddenHttpException('无权访问');
-        }
+//        if (!Yii::$app->user->can('createAdmin')) {
+//            throw new ForbiddenHttpException('无权访问');
+//        }
         $model = new SignupForm();
 
         if ($model->load(Yii::$app->request->post())) {
