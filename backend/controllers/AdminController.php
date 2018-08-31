@@ -7,6 +7,7 @@ use backend\models\Admin;
 use backend\models\AdminSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
@@ -69,6 +70,9 @@ class AdminController extends Controller
      */
     public function actionCreate()
     {
+        if (!Yii::$app->user->can('createAdmin')) {
+            throw new ForbiddenHttpException('无权访问');
+        }
         $model = new SignupForm();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -91,6 +95,7 @@ class AdminController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
