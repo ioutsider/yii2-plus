@@ -192,7 +192,7 @@ class AdminController extends Controller
     {
         //step1. 找出所有权限,提供给checkboxlist
         $allPrivileges = AuthItem::find()->select(['name', 'description'])
-                        ->where(['type' => 1])->orderBy('description')->all();
+                        ->orderBy('description')->all();
 
         foreach ($allPrivileges as $pri) {
             $allPrivilegesArray[$pri->name] = $pri->description;
