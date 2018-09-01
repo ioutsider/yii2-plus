@@ -12,7 +12,20 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
-        
+//        'view' => [
+//            'theme' => [
+//                'pathMap' => [
+//                    '@app/views' => '@app/themes/material-default',
+//                ],
+//            ],
+//        ],
+//        'view' => [
+//            'theme' => [
+//                'pathMap' => [
+//                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+//                ],
+//            ],
+//        ],
         'i18n' => [
             'translations' => [
                 'sys*' => [

@@ -1,4 +1,5 @@
 <?php
+
 namespace backend\controllers;
 
 use Yii;
@@ -12,6 +13,7 @@ use backend\models\LoginForm;
  */
 class SiteController extends Controller
 {
+
     /**
      * {@inheritdoc}
      */
@@ -21,11 +23,11 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
-                    [
+                        [
                         'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
-                    [
+                        [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -60,6 +62,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+//        echo 'app.' . Yii::getAlias('@app');
+//        echo "<br/>";
+//        echo 'backend.' . Yii::getAlias('@backend');
+//        echo "<br/>";
+//        echo 'webroot.' . Yii::getAlias('@webroot');
+//        echo "<br/>";
+//        echo 'web.' . Yii::getAlias('@web');
+//        echo "<br/>";
+//        echo 'runtime.' . Yii::getAlias('@runtime');
+//        die;
         return $this->render('index');
     }
 
@@ -81,7 +93,7 @@ class SiteController extends Controller
             $model->password = '';
 
             return $this->render('login', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -97,4 +109,5 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
+
 }
