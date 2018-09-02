@@ -16,24 +16,35 @@ return [
             'translations' => [
                 'sys*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@backend/messages',
+                    'basePath' => '@api/messages',
                 ],
             ],
         ],
         'request' => [
-            'csrfParam' => '_csrf-api',
+//            'class' => 'yii\web\Response',
+//            'csrfParam' => '_csrf-api',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
-            ]
+            ],
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                if ($response->data !== null && Yii::$app->request->get('suppress_response_code')) {
+                    $response->data = [
+                        'success' => $response->isSuccessful,
+                        'data' => $response->data,
+                    ];
+                    $response->statusCode = 200;
+                }
+            },
         ],
         'user' => [
             'identityClass' => 'api\models\Admin',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            // this is the name of the session cookie used for login on the api
+            'name' => 'advanced-api',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,7 +63,22 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                    ['class' => 'yii\rest\UrlRule', 'controller' => 'admin'],
+                    [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'admin',
+                    //'pluralize' => false,    //设置为false 就可以去掉复数形式了
+                    'extraPatterns' => [
+                        'POST send-email' => 'send-email'
+                    ],
+                ],
+                    [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'article',
+                    'pluralize' => false,
+                    'extraPatterns' => [
+                        'POST index' => 'index'
+                    ],
+                ],
             ],
         ],
     ],

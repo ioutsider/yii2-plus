@@ -202,4 +202,34 @@ class Admin extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'email_address' => 'email',
+            'username',
+            'created_at' => function($model) {
+                return date('Y-m-d H:i:s', $model->created_at);
+            },
+        ];
+
+        $fields = parent::fields();
+
+        // 删除一些包含敏感信息的字段
+        unset($fields['auth_key'], $fields['password_hash'], $fields['password_reset_token']);
+
+        return $fields;
+    }
+
+//    public function extraFields()
+//    {
+//        
+//    }
+//
+//    public function getLinks()
+//    {
+//        return [
+//           
+//        ];
+//    }
 }
