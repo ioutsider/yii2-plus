@@ -5,11 +5,8 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Admin;
 use backend\models\AdminSearch;
-use yii\web\Controller;
+use backend\controllers\BaseController;
 use yii\web\NotFoundHttpException;
-use yii\web\ForbiddenHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
 use backend\models\AuthItem;
@@ -18,58 +15,8 @@ use backend\models\AuthAssignment;
 /**
  * AdminController implements the CRUD actions for Admin model.
  */
-class AdminController extends Controller
+class AdminController extends BaseController
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                        [
-                        'allow' => true,
-                        'actions' => ['index'],
-                        'roles' => ['indexAdmin'],
-                    ],
-                        [
-                        'allow' => true,
-                        'actions' => ['view'],
-                        'roles' => ['viewAdmin'],
-                    ],
-                        [
-                        'allow' => true,
-                        'actions' => ['create'],
-                        'roles' => ['createAdmin'],
-                    ],
-                        [
-                        'allow' => true,
-                        'actions' => ['update'],
-                        'roles' => ['updateAdmin'],
-                    ],
-                        [
-                        'allow' => true,
-                        'actions' => ['delete'],
-                        'roles' => ['deleteAdmin'],
-                    ],
-                        [
-                        'allow' => true,
-                        'actions' => ['privilege'],
-                        'roles' => ['privilegeAdmin'],
-                    ],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Admin models.

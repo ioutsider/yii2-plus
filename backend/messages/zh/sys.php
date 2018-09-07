@@ -11,7 +11,7 @@ return [
     'permission' => '权限',
     'name' => '姓名',
     'Email' => '电子邮箱',
-    'welcome' => '欢迎',
+    'Welcome' => '欢迎回来',
     'Login' => '登录',
     'Logout' => '退出',
     'password' => '密码',
@@ -19,4 +19,7 @@ return [
     'username' => '用户名',
     'Status' => '账户状态',
     'Created At' => '创建时间',
+    'Settings' => '设置',
+    'Home' => '主页',
+    'Please wait...' => '努力加载中...'
 ];

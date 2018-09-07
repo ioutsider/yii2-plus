@@ -49,8 +49,13 @@ class LoginForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
+        var_dump($this->password . 'aaa');
+
         if (!$this->hasErrors()) {
+            var_dump($this->password . 'bb');
+
             $user = $this->getUser();
+           
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, Yii::t('app', 'Incorrect username or password.'));
             }
@@ -64,7 +69,9 @@ class LoginForm extends Model
      */
     public function login()
     {
+
         if ($this->validate()) {
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
 

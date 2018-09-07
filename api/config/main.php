@@ -10,7 +10,15 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+//        'v1' => [
+//            'basePath' => '@app/modules/v1',
+//            'class' => 'api\modules\v1\Module'
+//        ]
+        'v1' => [
+            'class' => 'api\modules\v1\Module',
+        ],
+    ],
     'components' => [
         'i18n' => [
             'translations' => [
@@ -20,31 +28,27 @@ return [
                 ],
             ],
         ],
+        'response' => [
+            'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->data = [
+                    'respCode' => $response->getStatusCode(),
+                    'respData' => $response->data,
+                    'respMsg' => $response->statusText
+                ];
+                $response->format = yii\web\Response::FORMAT_JSON;
+            },
+        ],
         'request' => [
-//            'class' => 'yii\web\Response',
-//            'csrfParam' => '_csrf-api',
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
             ],
-            'on beforeSend' => function ($event) {
-                $response = $event->sender;
-                if ($response->data !== null && Yii::$app->request->get('suppress_response_code')) {
-                    $response->data = [
-                        'success' => $response->isSuccessful,
-                        'data' => $response->data,
-                    ];
-                    $response->statusCode = 200;
-                }
-            },
         ],
         'user' => [
-            'identityClass' => 'api\models\Admin',
+            'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
-        ],
-        'session' => [
-            // this is the name of the session cookie used for login on the api
-            'name' => 'advanced-api',
+            'enableSession' => false,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -66,18 +70,22 @@ return [
                     [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'admin',
-                    //'pluralize' => false,    //设置为false 就可以去掉复数形式了
-                    'extraPatterns' => [
-                        'POST send-email' => 'send-email'
-                    ],
                 ],
                     [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'article',
                     'pluralize' => false,
                     'extraPatterns' => [
-                        'POST index' => 'index'
+                        'POST index' => 'index',
+                        'POST send-email' => 'send-email'
                     ],
+                ],
+                    ['class' => 'yii\rest\UrlRule',
+                    'controller' => 'auth',
+                    'pluralize' => false,
+                    'extraPatterns' => [
+                        'POST login' => 'login',
+                    ]
                 ],
             ],
         ],
