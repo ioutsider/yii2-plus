@@ -11,6 +11,22 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+//            'defaultRoles' => ['guest'],
+        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

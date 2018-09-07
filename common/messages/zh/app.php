@@ -9,5 +9,12 @@ return [
     'Please Input Your Name' => '请输入你的姓名',
     'name' => '姓名',
     'email' => '电子邮箱',
-    'welcome' => '欢迎'
+    'welcome' => '欢迎',
+    'Login' => '登录',
+    'Logout' => '退出',
+    'Please fill out the following fields to login:' => '请输入用户名及密码登录。',
+    'rememberMe' => '记住我',
+    'password' => '密码',
+    'username' => '用户名',
+    'Incorrect username or password.' => '用户名或密码错误。'
 ];

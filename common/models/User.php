@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -23,9 +24,9 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-
 
     /**
      * {@inheritdoc}
@@ -51,8 +52,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+                ['status', 'default', 'value' => self::STATUS_ACTIVE],
+                ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
 
@@ -69,7 +70,11 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::find('id')
+                        ->where(['access_token' => $token, 'status' => self::STATUS_ACTIVE])
+                        ->andWhere(['>', 'expire_at', time()])
+                        ->scalar();
+//        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
     /**
@@ -96,8 +101,8 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
+                    'password_reset_token' => $token,
+                    'status' => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -186,4 +191,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function generateAccessToken()
+    {
+        $this->access_token = Yii::$app->security->generateRandomString();
+        return $this->access_token;
+    }
+
 }

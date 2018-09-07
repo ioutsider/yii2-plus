@@ -11,6 +11,13 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+//        'view' => [
+//            'theme' => [
+//                'pathMap' => [
+//                    '@app/views' => '@app/themes/material-default',
+//                ],
+//            ],
+//        ],
         'i18n' => [
             'translations' => [
                 'app*' => [
@@ -20,6 +27,10 @@ return [
                         'app' => 'app.php',
                         'app/error' => 'error.php',
                     ],
+                ],
+                'sys*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@backend/messages',
                 ],
             ],
         ],
