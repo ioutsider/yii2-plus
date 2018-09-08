@@ -125,12 +125,12 @@ class RoleController extends BaseController{
 
         }elseif(Yii::$app->request->isPost){
 
-            $ret     = $this->roleservice->assignRole(Yii::$app->request->post());
+            $ret = $this->roleservice->assignRole(Yii::$app->request->post());
 
-            if($ret){
+            if ($ret) {
 
                 Flush::success('权限分配成功');
-            }else{
+            } else {
 
                 Flush::danger('操作失败');
             }

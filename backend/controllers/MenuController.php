@@ -12,11 +12,23 @@ namespace backend\controllers;
 use Yii;
 use backend\controllers\BaseController;
 use backend\models\Menu;
+use yii\data\Pagination;
 
 class MenuController extends BaseController {
 
     public function actionIndex() {
-        
+
+        $query = Menu::find()->where('parent_id=:parent_id', [':parent_id' => 0]);
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 15]);
+        $models = $query->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all();
+
+        return $this->render('index', [
+                    'models' => $models,
+                    'pages' => $pages,
+        ]);
     }
 
     public function actionCreate() {
@@ -36,6 +48,17 @@ class MenuController extends BaseController {
                     'menus' => $menus,
                     'permission' => $permission
         ]);
+    }
+
+    public function actionSub() {
+        $parent_id = Yii::$app->request->get('parent_id');
+
+        $menu = new Menu;
+        $models = $menu->getSub($parent_id);
+//        echo "<pre>";
+//        var_dump($models);
+//        die;
+        return $this->render('sub', ['models' => $models]);
     }
 
 }

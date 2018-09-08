@@ -57,15 +57,13 @@ class AdminController extends BaseController {
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
 
-                
+
                 return $this->redirect(['view', 'id' => $user->id]);
             }
         }
-        $roles = AuthItem::find()
-                ->select(['name', 'description'])
-                ->where('type=1')
-                ->asArray()
-                ->all();
+        $authrule = new \backend\models\AuthRule;
+        $roles = $authrule->getRoles();
+
         return $this->render('create', [
                     'model' => $model,
                     'roles' => $roles

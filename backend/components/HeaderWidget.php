@@ -18,7 +18,7 @@ class HeaderWidget extends Widget{
 
 
 
-        return $this->render('@app/views/layouts/mylayouts/headers');
+        return $this->render('@app/views/layouts/header');
     }
 
 }
