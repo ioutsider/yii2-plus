@@ -5,8 +5,7 @@ namespace backend\models;
 use yii\base\Model;
 use yii\rbac\Item;
 
-class PermissionForm extends Model
-{
+class PermissionForm extends Model {
 
     public $id;
     public $name;
@@ -16,8 +15,7 @@ class PermissionForm extends Model
     public $data;
     public $typename;
 
-    public function init()
-    {
+    public function init() {
 
         parent::init();
         $this->type = Item::TYPE_PERMISSION; //常量值 2
@@ -26,16 +24,15 @@ class PermissionForm extends Model
     /**
      * 验证规则
      */
-//    public function rules()
-//    {
-//
-//        return [
-////                ['name', 'unique', 'targetClass' => '\backend\models\AuthItem', 'message' => '权限名称不能重复', 'on' => ['create', 'update']],
-////                ['name', 'required', 'message' => '权限名称不能为空'],
-////                ['description', 'required', 'message' => '请简单描述权限'],
-////                ['typename', 'required', 'message' => '权限类型名称'],
-//        ];
-//    }
+    public function rules() {
+
+        return [
+            ['name', 'unique', 'targetClass' => '\backend\models\AuthItem', 'message' => '权限名称不能重复'],
+            ['name', 'required', 'message' => '权限名称不能为空'],
+            ['description', 'required', 'message' => '请简单描述权限'],
+            ['typename', 'required', 'message' => '权限类型名称不能为空'],
+        ];
+    }
 
 //    // 更新 ，添加，场景
 //    public function scenarios()
@@ -45,31 +42,12 @@ class PermissionForm extends Model
 //            'update' => ['description', 'typename']
 //        ];
 //    }
-    //验证权限名是否重复
-//    public function beforeValidate()
-//    {
-//        $ret = AuthItem::find()->where(['name' => $this->name, 'type' => $this->type])->asArray()->one();
-//        if ($ret) {
-//            if ($ret['name'] == $this->name) {
-//                return true;
-//            } else {
-//
-//                $this->addError('name', '权限名称不能重复');
-//                return false;
-//            }
-//        } else {
-//            return true;
-//        }
-//    }
 
     /**
      * 添加权限
      */
-    public function addPermission()
-    {
+    public function addPermission() {
 
-//        echo "222";
-//        die;
         $authItem = new AuthItem();
         $authItem->name = $this->name;
         $authItem->type = $this->type;
@@ -82,8 +60,7 @@ class PermissionForm extends Model
     /**
      * 更新权限
      */
-    public function updatePermission($name)
-    {
+    public function updatePermission($name) {
 
         $authItem = AuthItem::find()->where(['name' => $name, 'type' => $this->type])->one();
         $authItem->name = $this->name;
