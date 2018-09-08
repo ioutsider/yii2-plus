@@ -11,6 +11,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\controllers\BaseController;
+use backend\models\Menu;
 
 class MenuController extends BaseController {
 
@@ -24,8 +25,16 @@ class MenuController extends BaseController {
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->addMenu()) {
             Yii::$app->session->setFlash('success', 'add menu success.');
         }
+
+        //查询父级菜单
+        $menu = new Menu;
+        $menus = $menu->getTopmenus();
+        $permission = $menu->getPermission();
+//        var_dump($permission);die;
         return $this->render('create', [
                     'model' => $model,
+                    'menus' => $menus,
+                    'permission' => $permission
         ]);
     }
 

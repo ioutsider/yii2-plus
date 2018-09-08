@@ -30,7 +30,8 @@ class MenuForm extends Model {
             ['name', 'unique', 'targetClass' => '\backend\models\Menu', 'message' => '菜单名称不能重复'],
             ['name', 'required', 'message' => '菜单名称不能为空'],
             ['url', 'required', 'message' => '访问地址不能为空'],
-            ['slug', 'required', 'message' => '请选择对应的菜单权限']
+            ['slug', 'required', 'message' => '请选择对应的菜单权限'],
+            [['description', 'parent_id'], 'safe']
         ];
     }
 

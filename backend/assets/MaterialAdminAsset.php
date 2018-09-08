@@ -16,6 +16,7 @@ class MaterialAdminAsset extends AssetBundle
         'assets/css/animate.min.css',
         'assets/css/fullcalendar.min.css',
         'assets/css/jquery.mCustomScrollbar.min.css',
+        'assets/css/chosen.min.css',
         'assets/css/app.min.1.css',
         'assets/css/app.min.2.css',
     ];
@@ -36,6 +37,7 @@ class MaterialAdminAsset extends AssetBundle
         'assets/js/curved-line-chart.js',
         'assets/js/line-chart.js',
         'assets/js/charts.js',
+        'assets/js/chosen.jquery.min.js',
         'assets/js/functions.js',
         'assets/js/demo.js',
     ];

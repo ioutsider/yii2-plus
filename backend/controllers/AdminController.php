@@ -15,15 +15,13 @@ use backend\models\AuthAssignment;
 /**
  * AdminController implements the CRUD actions for Admin model.
  */
-class AdminController extends BaseController
-{
+class AdminController extends BaseController {
 
     /**
      * Lists all Admin models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new AdminSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -39,8 +37,7 @@ class AdminController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
                     'model' => $this->findModel($id),
         ]);
@@ -51,8 +48,7 @@ class AdminController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
 //        if (!Yii::$app->user->can('createAdmin')) {
 //            throw new ForbiddenHttpException('无权访问');
 //        }
@@ -60,12 +56,19 @@ class AdminController extends BaseController
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+
+                
                 return $this->redirect(['view', 'id' => $user->id]);
             }
         }
-
+        $roles = AuthItem::find()
+                ->select(['name', 'description'])
+                ->where('type=1')
+                ->asArray()
+                ->all();
         return $this->render('create', [
                     'model' => $model,
+                    'roles' => $roles
         ]);
     }
 
@@ -76,8 +79,7 @@ class AdminController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -96,8 +98,7 @@ class AdminController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -110,8 +111,7 @@ class AdminController extends BaseController
      * @return Admin the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Admin::findOne($id)) !== null) {
             return $model;
         }
@@ -119,8 +119,7 @@ class AdminController extends BaseController
         throw new NotFoundHttpException(Yii::t('sys', 'The requested page does not exist.'));
     }
 
-    public function actionResetpwd($id)
-    {
+    public function actionResetpwd($id) {
         $model = new ResetpwdForm();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -135,8 +134,7 @@ class AdminController extends BaseController
         ]);
     }
 
-    public function actionPrivilege($id)
-    {
+    public function actionPrivilege($id) {
         //step1. 找出所有权限,提供给checkboxlist
         $allPrivileges = AuthItem::find()->select(['name', 'description'])
                         ->orderBy('description')->all();

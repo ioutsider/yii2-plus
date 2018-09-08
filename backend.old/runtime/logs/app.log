@@ -1458,3 +1458,82 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1536228674.6661
     'REQUEST_TIME' => 1536228674
 ]
+2018-09-08 11:16:27 [127.0.0.1][-][ba3lsrbael0o02ic55g6g0tce3][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "auth".' in D:\www\yii2-plus\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 D:\www\yii2-plus\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('auth', Array)
+#1 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\www\yii2-plus\backend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message '页面未找到。' in D:\www\yii2-plus\vendor\yiisoft\yii2\web\Application.php:115
+Stack trace:
+#0 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\www\yii2-plus\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2018-09-08 11:16:27 [127.0.0.1][-][ba3lsrbael0o02ic55g6g0tce3][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => 'dk4hd215jur2se187mer2k3il7'
+    '_identity-backend' => 'fbf17846561056b26db98c7cb8166e40a741986393e7e7ab709a21ee80244f0ea:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"DSSXsI4iZs0DHdtIOW4ozdU-68hY1m6D\",2592000]\";}'
+    '_csrf-backend' => 'f27f2d9e98e8519e7046290c84b0a2b520739b769d1d71a2f5413d18f751e2c1a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"gDB_g96KGwpyHtC61o9DPGj-o91ylfoH\";}'
+    '_csrf' => '073be43afade587c67c98367fe73db755162f7b7065a4505a8ef07b94791a873a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"rxqSeWhr2qDN0JF_lMCetsF82aClcnnk\";}'
+    'PHPSESSID' => 'ba3lsrbael0o02ic55g6g0tce3'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/index.php?r=permission%2Fcreate'
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\bin\\Intel64;C:\\Program Files (x86)\\SepanderSoft;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\TortoiseSVN\\bin;C:\\phpStudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'C:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1956'
+    'SCRIPT_NAME' => '/index.php'
+    'REQUEST_URI' => '/auth'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/auth'
+    'REMOTE_PORT' => '59440'
+    'SCRIPT_FILENAME' => 'D:/www/yii2-plus/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/www/yii2-plus/backend/web'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/www/yii2-plus/backend/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => 'b.yii2plus.com'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'advanced-backend=dk4hd215jur2se187mer2k3il7; _identity-backend=fbf17846561056b26db98c7cb8166e40a741986393e7e7ab709a21ee80244f0ea%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22DSSXsI4iZs0DHdtIOW4ozdU-68hY1m6D%22%2C2592000%5D%22%3B%7D; _csrf-backend=f27f2d9e98e8519e7046290c84b0a2b520739b769d1d71a2f5413d18f751e2c1a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22gDB_g96KGwpyHtC61o9DPGj-o91ylfoH%22%3B%7D; _csrf=073be43afade587c67c98367fe73db755162f7b7065a4505a8ef07b94791a873a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22rxqSeWhr2qDN0JF_lMCetsF82aClcnnk%22%3B%7D; PHPSESSID=ba3lsrbael0o02ic55g6g0tce3'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => 'b.yii2plus.com'
+    'HTTP_AUTHORIZATION' => ''
+    'protossl' => ''
+    'REDIRECT_STATUS' => '200'
+    'REDIRECT_HTTP_AUTHORIZATION' => ''
+    'REDIRECT_protossl' => ''
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1536376587.0461
+    'REQUEST_TIME' => 1536376587
+]

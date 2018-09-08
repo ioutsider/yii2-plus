@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: xu.gao
@@ -6,65 +7,32 @@
  * Time: 9:59
  */
 
-namespace backend\models\Menu;
+namespace backend\models;
 
-
-use backend\models\Menu\Traits\MenuTraits;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
-class Menu extends ActiveRecord{
+class Menu extends ActiveRecord {
 
-    public static function tableName()
-    {
+    public static function tableName() {
         return '{{%menu}}';
     }
 
-    /**
-     * 自动更新  created_at  updated_at
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
+    public function getTopmenus() {
+        $menus = Menu::find()
+                ->select(['id', 'description'])
+                ->where('parent_id=0')
+                ->asArray()
+                ->all();
+
+        return array_merge([['id' => 0, 'description' => '一级菜单']], $menus);
     }
-    /**
-     * 分页方法
-     * $where 查询条件数组
-     * $page  分页条件数组
-     */
-    public static function dataPage($page = null){
 
-        $query  = static::find();
-        //每页显示几条
-        $limit  = $page['pageSize'];
-        //计算分页
-        $offset = ($page['pageIndex'] - 1) * $limit;
-
-        $ret    = $query    ->andFilterWhere(['like','name',$page['search']])
-                            ->andFilterWhere(['=','parent_id',0])
-                            ->offset($offset)
-                            ->limit($limit)
-                            ->orderBy($page['sort'])
-                            ->asArray()
-                            ->all();
-        return $ret;
-    }
-    /**
-     * 获取总页数
-     * $where 查询条件数组
-     */
-    public static function dataCount($where){
-
-        $query       = static::find();
-
-        $totalCount  = $query->andFilterWhere(['like','username',$where['search']])
-                            ->andFilterWhere(['=','parent_id',0])
-                            ->count();
-
-        return $totalCount;
+    public function getPermission() {
+        return AuthItem::find()
+                        ->select(['name', 'description'])
+                        ->where('type=2')
+                        ->asArray()
+                        ->all();
     }
 
 }

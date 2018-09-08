@@ -3,6 +3,7 @@
 $this->title = "添加菜单";
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 ?>
 <?php if (Yii::$app->session->hasFlash('success')): ?>
     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -40,13 +41,18 @@ use yii\helpers\Html;
         <?= Html::error($model, 'route', ['class' => 'error']) ?>
         <div class="form-group fg-line">
             <label for="exampleInputEmail1">上级菜单</label>
-            <?= Html::activeInput('text', $model, 'parent_id', ['class' => 'form-control input-sm', 'placeholder' => '请输入上级菜单']) ?>
+
+
+            <?= Html::activeDropDownList($model, 'parent_id', ArrayHelper::map($menus, 'id', 'description'), ['class' => 'chosen', 'prompt' => '选择上级菜单']) ?>
+
 
         </div>
         <small class="help-block"><?= Html::error($model, 'parent_id', ['class' => 'error']) ?></small>
         <div class="form-group fg-line">
             <label for="exampleInputEmail1">菜单权限</label>
-            <?= Html::activeInput('text', $model, 'slug', ['class' => 'form-control input-sm', 'placeholder' => '请输入菜单权限']) ?>
+
+
+            <?= Html::activeDropDownList($model, 'slug', ArrayHelper::map($permission, 'name', 'description'), ['class' => 'chosen', 'prompt' => '请选择菜单权限']) ?>
 
         </div>
         <small class="help-block"><?= Html::error($model, 'slug', ['class' => 'error']) ?></small>
@@ -56,7 +62,6 @@ use yii\helpers\Html;
         </div>
         <small class="help-block"><?= Html::error($model, 'description', ['class' => 'error']) ?></small>
         <?= Html::submitButton('提 交', ['class' => 'btn btn-primary btn-sm m-t-10 waves-effect']) ?>
-        <!--<button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect">Submit</button>-->
         <?= Html::endForm() ?>
     </div>
 </div>
