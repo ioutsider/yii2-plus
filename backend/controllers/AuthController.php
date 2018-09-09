@@ -5,23 +5,22 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\LoginForm;
+use yii\helpers\Url;
 
 /**
  * Site controller
  */
-class AuthController extends Controller
-{
+class AuthController extends Controller {
 
     /**
      * Login action.
      *
      * @return string
      */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+    public function actionLogin() {
+//        if (!Yii::$app->user->isGuest) {
+//            return $this->goHome();
+//        }
 //        var_dump(Yii::$app->request->post());
 //        die;
         $model = new LoginForm();
@@ -42,11 +41,10 @@ class AuthController extends Controller
      *
      * @return string
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(Url::to(['auth/login']));
     }
 
 }

@@ -6,14 +6,13 @@ use Yii;
 use yii\base\Behavior;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
+use yii\helpers\Url;
 
-class PermissionBehavior extends Behavior
-{
+class PermissionBehavior extends Behavior {
 
     public $actions = [];
 
-    public function events()
-    {
+    public function events() {
         return [
             Controller::EVENT_BEFORE_ACTION => 'beforeAction',
         ];
@@ -25,8 +24,7 @@ class PermissionBehavior extends Behavior
      * @throws ForbiddenHttpException
      * @return boolean
      */
-    public function beforeAction($event)
-    {
+    public function beforeAction($event) {
         $controller = $event->action->controller->id;   //获取到控制器
         $action = $event->action->id;                   //获取到action
         //验证权限
@@ -46,6 +44,7 @@ class PermissionBehavior extends Behavior
             return true;
 
         if (!Yii::$app->user->can($access)) {
+//            return $this->redirect(Url::to(['auth/login']));
             throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
         }
         return true;

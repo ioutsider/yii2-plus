@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 //use yii\widgets\ActiveForm;
 //use yii\helpers\Html;
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="adminuser-form">
 
         <?php $form = ActiveForm::begin(); ?>
-
+        <?= Html::activeDropDownList($model, 'roles', ArrayHelper::map($roles, 'name', 'description'), ['class' => 'chosen', 'multiple' => 'multiple', 'prompt' => '选择角色']) ?>
         <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>

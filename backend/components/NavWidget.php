@@ -12,8 +12,8 @@ class NavWidget extends Widget {
 
         $menus = new \backend\models\Menu;
         $topmenus = $menus->getParentmenus();
-//        echo "<pre>";
-//var_dump($topmenus);die;
+        echo "<pre>";
+var_dump($topmenus);die;
         $menuList = $menus->menuGroup($topmenus);
 
        

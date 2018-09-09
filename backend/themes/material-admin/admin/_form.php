@@ -2,10 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
-/* @var $this yii\web\View */
-/* @var $model backend\models\Admin */
-/* @var $form yii\widgets\ActiveForm */
+use yii\helpers\ArrayHelper;
 ?>
 
 <div class="admin-form">

@@ -21,17 +21,17 @@ GridView::widget([
 //        
 //    ],
     'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        ['class' => 'yii\grid\SerialColumn'],
         'id',
         'username',
         'email:email',
         'status',
-            [
+        [
             'attribute' => 'created_at',
             'format' => ['date', 'php:Y-m-d H:i:s'],
         ],
-            ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {resetpwd} {privilege}',
+        ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update} {resetpwd}',
             'buttons' => [
                 'resetpwd' => function($url, $model, $key) {
                     $options = [
@@ -40,15 +40,7 @@ GridView::widget([
                         'data-pjax' => '0',
                     ];
                     return Html::a('<span class="glyphicon glyphicon-lock"></span>', $url, $options);
-                },
-                'privilege' => function($url, $model, $key) {
-                    $options = [
-                        'title' => Yii::t('sys', 'permission'),
-                        'aria-label' => Yii::t('sys', 'permission'),
-                        'data-pjax' => '0',
-                    ];
-                    return Html::a('<span class="glyphicon glyphicon-user"></span>', $url, $options);
-                },
+                }
             ],
         ],
     ],
