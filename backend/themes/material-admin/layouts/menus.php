@@ -69,40 +69,6 @@ use yii\helpers\Url;
             </li>
 
         <?php endforeach; ?>
-        <!--        <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> 用户管理</a>
-                    <ul>
-                        <li><a href="<?= Url::to(['admin/index']) ?>">用户列表</a></li>
-                        <li><a href="<?= Url::to(['admin/create']) ?>">添加用户</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> 会员管理</a>
-                    <ul>
-                        <li><a href="<?= Url::to(['user/index']) ?>">会员列表</a></li>
-        
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> 菜单管理</a>
-                    <ul>
-                        <li><a href="<?= Url::to(['menu/index']) ?>">菜单列表</a></li>
-                        <li><a href="<?= Url::to(['menu/create']) ?>">添加菜单</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> 角色管理</a>
-                    <ul>
-                        <li><a href="<?= Url::to(['role/index']) ?>">角色列表</a></li>
-                        <li><a href="<?= Url::to(['role/create']) ?>">添加角色</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href=""><i class="zmdi zmdi-view-compact"></i> 权限管理</a>
-                    <ul>
-                        <li><a href="<?= Url::to(['permission/index']) ?>">权限列表</a></li>
-                        <li><a href="<?= Url::to(['permission/create']) ?>">添加权限</a></li>
-                    </ul>
-                </li>-->
+
     </ul>
 </aside>
