@@ -52,18 +52,15 @@ class Menu extends ActiveRecord {
     }
 
     public function menuGroup($items) {
-//        echo "<pre>";
-//        var_dump($items);
-//        die;
+
         $tree = [];
         $uid = Yii::$app->user->getId();
-   
-       
+
+
         $permissions = ArrayHelper::toArray(Yii::$app->authManager->getPermissionsByUser($uid));
-//        echo "<pre>";
-//        var_dump($permissions);
-//        die;
+
         $permissions = array_keys($permissions);
+
         foreach ($items as $item) {
 
             if (in_array($item['slug'], $permissions)) {
