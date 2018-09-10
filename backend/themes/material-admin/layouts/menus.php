@@ -53,7 +53,7 @@ use yii\helpers\Url;
             ?>
             <li <?php
             if ($flag == 0) {
-                echo 'class="sub-menu active"';
+                echo 'class="sub-menu toggled active"';
             } else {
                 echo 'class="sub-menu"';
             }
