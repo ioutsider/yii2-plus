@@ -38,6 +38,9 @@ use yii\helpers\Url;
         <?php foreach ($menus as $item): ?>
 
             <?php
+//            echo "<pre>";
+//            var_dump($item);
+//            die;
             $controllerID = Yii::$app->controller->id;
             $actionID = Yii::$app->controller->action->id;
             $str = Url::current();
@@ -55,12 +58,12 @@ use yii\helpers\Url;
                 echo 'class="sub-menu"';
             }
             ?>>
-                <a href=""><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <?= $item['name'] ?></a>
-                <ul <?php if ($flag == 0) echo 'style="display: block;"'; ?>>
+                <a href=""><i class="zmdi <?php echo $item['icon'] ? 'zmdi-' . $item['icon'] : 'zmdi-widgets'; ?> zmdi-hc-fw"></i> <?= $item['name'] ?></a>
+                <ul>
 
                     <?php if (!empty($item['son'])) : ?>
                         <?php foreach ($item['son'] as $son): ?>
-                            <li><a <?php if ($controllerID . '/' . $actionID == $son['url']) echo 'class="active"'; ?>  href="<?= Url::toRoute($son['url']); ?>"><i class="zmdi zmdi-long-arrow-right zmdi-hc-fw"></i> <?= $son['name'] ?></a></li>
+                            <li><a <?php if ($controllerID . '/' . $actionID == $son['url']) echo 'class="active"'; ?>  href="<?= Url::toRoute($son['url']); ?>"><i class="zmdi <?php echo $son['icon'] ? 'zmdi-' . $son['icon'] : 'zmdi-long-arrow-right'; ?>"></i> <?= $son['name'] ?></a></li>
                             <?php endforeach; ?>
                         <?php endif; ?>
 
