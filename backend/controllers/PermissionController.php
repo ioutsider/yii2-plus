@@ -17,6 +17,7 @@ class PermissionController extends BaseController {
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 5]);
         $models = $query->offset($pages->offset)
                 ->limit($pages->limit)
+                ->orderBy('created_at DESC')
                 ->all();
 
         return $this->render('index', [

@@ -37,7 +37,7 @@ class AuthItem extends \yii\db\ActiveRecord {
         return [
             ['name', 'unique', 'targetClass' => '\backend\models\AuthItem', 'message' => '名称不能重复'],
             ['name', 'required', 'message' => '名称不能为空'],
-            ['description', 'safe']
+            [['description','typename'], 'safe']
         ];
     }
 

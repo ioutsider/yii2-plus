@@ -20,6 +20,7 @@ class RoleController extends BaseController {
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $models = $query->offset($pages->offset)
                 ->limit($pages->limit)
+                ->orderBy('created_at DESC')
                 ->all();
 
         return $this->render('index', [

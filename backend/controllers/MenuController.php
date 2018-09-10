@@ -24,6 +24,7 @@ class MenuController extends BaseController {
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 15]);
         $models = $query->offset($pages->offset)
                 ->limit($pages->limit)
+                ->orderBy('created_at DESC')
                 ->all();
 
         return $this->render('index', [
