@@ -15638,3 +15638,91 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1536581630.7219
     'REQUEST_TIME' => 1536581630
 ]
+2018-09-10 21:34:06 [127.0.0.1][1][d13mlh325hdpb1hd11029pbi92][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: controllerID' in D:\www\yii2-plus\backend\themes\material-admin\layouts\menus.php:33
+Stack trace:
+#0 D:\www\yii2-plus\backend\themes\material-admin\layouts\menus.php(33): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', 'D:\\www\\yii2-plu...', 33, Array)
+#1 D:\www\yii2-plus\vendor\yiisoft\yii2\base\View.php(336): require('D:\\www\\yii2-plu...')
+#2 D:\www\yii2-plus\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('D:\\www\\yii2-plu...', Array)
+#3 D:\www\yii2-plus\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('D:\\www\\yii2-plu...', Array, Object(backend\components\NavWidget))
+#4 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Widget.php(236): yii\base\View->render('@app/views/layo...', Array, Object(backend\components\NavWidget))
+#5 D:\www\yii2-plus\backend\components\NavWidget.php(19): yii\base\Widget->render('@app/views/layo...', Array)
+#6 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Widget.php(140): backend\components\NavWidget->run()
+#7 D:\www\yii2-plus\backend\themes\material-admin\layouts\main.php(26): yii\base\Widget::widget()
+#8 D:\www\yii2-plus\vendor\yiisoft\yii2\base\View.php(336): require('D:\\www\\yii2-plu...')
+#9 D:\www\yii2-plus\vendor\yiisoft\yii2\base\View.php(254): yii\base\View->renderPhpFile('D:\\www\\yii2-plu...', Array)
+#10 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Controller.php(399): yii\base\View->renderFile('D:\\www\\yii2-plu...', Array, Object(backend\controllers\AdminController))
+#11 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Controller.php(385): yii\base\Controller->renderContent('\r\n<h2>\xE7\xB3\xBB\xE7\xBB\x9F\xE7\xAE\xA1...')
+#12 D:\www\yii2-plus\backend\controllers\AdminController.php(31): yii\base\Controller->render('index', Array)
+#13 [internal function]: backend\controllers\AdminController->actionIndex()
+#14 D:\www\yii2-plus\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#15 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#16 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('index', Array)
+#17 D:\www\yii2-plus\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('admin/index', Array)
+#18 D:\www\yii2-plus\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#19 D:\www\yii2-plus\backend\web\index.php(18): yii\base\Application->run()
+#20 {main}
+2018-09-10 21:34:05 [127.0.0.1][1][d13mlh325hdpb1hd11029pbi92][info][application] $_GET = [
+    'r' => 'admin/index'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => 'd13mlh325hdpb1hd11029pbi92'
+    '_identity-backend' => 'fbf17846561056b26db98c7cb8166e40a741986393e7e7ab709a21ee80244f0ea:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"DSSXsI4iZs0DHdtIOW4ozdU-68hY1m6D\",2592000]\";}'
+    '_csrf-backend' => 'e1d81a51e96524300af02975e2794c03a9fd4743d770ccf71e33a9f0fd144efba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"vIGIwugiuHywAgCoOUVtYxjzaDUZUSp1\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => 1
+    'type' => 'success'
+    'msg' => '权限分配成功'
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Files\\cpp\\bin\\Intel64;C:\\Program Files (x86)\\SepanderSoft;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\TortoiseSVN\\bin;C:\\phpStudy\\php55n;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Git\\cmd'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'C:/phpStudy/php55n'
+    '_FCGI_SHUTDOWN_EVENT_' => '1968'
+    'SCRIPT_NAME' => '/index.php'
+    'REQUEST_URI' => '/index.php?r=admin%2Findex'
+    'QUERY_STRING' => 'r=admin%2Findex'
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REMOTE_PORT' => '56846'
+    'SCRIPT_FILENAME' => 'D:/www/yii2-plus/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/www/yii2-plus/backend/web'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'D:/www/yii2-plus/backend/web'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => 'b.yii2plus.com'
+    'SERVER_SOFTWARE' => 'Apache/2.4.18 (Win32) OpenSSL/1.0.2e mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => 'advanced-backend=d13mlh325hdpb1hd11029pbi92; _identity-backend=fbf17846561056b26db98c7cb8166e40a741986393e7e7ab709a21ee80244f0ea%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22DSSXsI4iZs0DHdtIOW4ozdU-68hY1m6D%22%2C2592000%5D%22%3B%7D; _csrf-backend=e1d81a51e96524300af02975e2794c03a9fd4743d770ccf71e33a9f0fd144efba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22vIGIwugiuHywAgCoOUVtYxjzaDUZUSp1%22%3B%7D'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.9,en;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://b.yii2plus.com/index.php?r=permission%2Fcreate'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.81 Safari/537.36'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => 'b.yii2plus.com'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1536586445.6813
+    'REQUEST_TIME' => 1536586445
+]

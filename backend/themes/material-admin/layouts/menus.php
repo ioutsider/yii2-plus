@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Url;
+
+$controllerID = Yii::$app->controller->id;
+$actionID = Yii::$app->controller->action->id;
 ?>
 <aside id="sidebar" class="sidebar c-overflow">
     <div class="profile-menu">
@@ -30,7 +33,7 @@ use yii\helpers\Url;
 
 
     <ul class="main-menu">
-        <li class="active">
+        <li <?php if ($controllerID . '/' . $actionID == 'site/index') echo 'class="active"'; ?>>
             <a href="<?= Url::to(['site/index']); ?>"><i class="zmdi zmdi-home"></i> <?= Yii::t('sys', 'Home') ?></a>
         </li>
         <!--遍历菜单-->
@@ -38,21 +41,14 @@ use yii\helpers\Url;
         <?php foreach ($menus as $item): ?>
 
             <?php
-//            echo "<pre>";
-//            var_dump($item);
-//            die;
-            $controllerID = Yii::$app->controller->id;
-            $actionID = Yii::$app->controller->action->id;
-            $str = Url::current();
-            $arr = explode('/', $str);
             if ($item['url'] == $controllerID) {
-                $flag = 0;
+                $isactive = 0;
             } else {
-                $flag = 1;
+                $isactive = 1;
             }
             ?>
             <li <?php
-            if ($flag == 0) {
+            if ($isactive == 0) {
                 echo 'class="sub-menu toggled active"';
             } else {
                 echo 'class="sub-menu"';
