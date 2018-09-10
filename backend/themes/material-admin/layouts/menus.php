@@ -38,10 +38,11 @@ use yii\helpers\Url;
         <?php foreach ($menus as $item): ?>
 
             <?php
+            $controllerID = Yii::$app->controller->id;
+            $actionID = Yii::$app->controller->action->id;
             $str = Url::current();
             $arr = explode('/', $str);
-
-            if (in_array($item['url'], $arr)) {
+            if ($item['url'] == $controllerID) {
                 $flag = 0;
             } else {
                 $flag = 1;
@@ -49,21 +50,19 @@ use yii\helpers\Url;
             ?>
             <li <?php
             if ($flag == 0) {
-                echo 'class="sub-menu toggled"';
+                echo 'class="sub-menu active"';
             } else {
                 echo 'class="sub-menu"';
             }
             ?>>
-                <a href=""><i class="zmdi zmdi-view-compact"></i> <?= $item['name'] ?></a>
+                <a href=""><i class="zmdi zmdi-widgets zmdi-hc-fw"></i> <?= $item['name'] ?></a>
                 <ul <?php if ($flag == 0) echo 'style="display: block;"'; ?>>
 
                     <?php if (!empty($item['son'])) : ?>
                         <?php foreach ($item['son'] as $son): ?>
-
-                            <li><a <?php if (Url::current() == $son['url']) echo 'class="active"'; ?>  href="<?= Url::toRoute($son['url']); ?>"><i class="md md-arrow-forward"></i><?= $son['name'] ?></a></li>
-
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                            <li><a <?php if ($controllerID . '/' . $actionID == $son['url']) echo 'class="active"'; ?>  href="<?= Url::toRoute($son['url']); ?>"><i class="zmdi zmdi-long-arrow-right zmdi-hc-fw"></i> <?= $son['name'] ?></a></li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
 
                 </ul>
             </li>
