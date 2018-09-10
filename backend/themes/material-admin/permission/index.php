@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\AuthItemSearch */
@@ -42,11 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model['typename']; ?></td>
                             <td><?= $model['name']; ?></td>
                             <td><?= $model['description']; ?></td>
-                            <td><?= $model['created_at']; ?></td>
-                            <td><?= $model['updated_at']; ?></td>
+                            <td><?= date('Y-m-d H:i:s', $model['created_at']); ?></td>
+                            <td><?= date('Y-m-d H:i:s', $model['updated_at']); ?></td>
                             <td>
-                                更新
-                                删除
+                                <a href="<?= Url::to(['permission/update', 'name' => $model['name']]) ?>">更新</a>
+                                <a href="<?= Url::to(['permission/delete', 'name' => $model['name']]) ?>">删除</a>
 
                             </td>
                         </tr>

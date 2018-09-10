@@ -41,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $k + 1 ?></td>
                             <td><?= $model['name']; ?></td>
                             <td><?= $model['description']; ?></td>
-                            <td><?= $model['created_at']; ?></td>
-                            <td><?= $model['updated_at']; ?></td>
+                            <td><?= date('Y-m-d H:i:s', $model['created_at']); ?></td>
+                            <td><?= date('Y-m-d H:i:s', $model['updated_at']); ?></td>
                             <td>
-                                <a href="<?= Url::to(['']) ?>">更新</a>
-                                <a href="<?= Url::to(['']) ?>">删除</a>
+                                <a href="<?= Url::to(['role/update', 'name' => $model['name']]) ?>">更新</a>
+                                <a href="<?= Url::to(['role/delete', 'name' => $model['name']]) ?>">删除</a>
                                 <a href="<?= Url::to(['role/assignment', 'name' => $model['name']]) ?>">分配权限</a>
                             </td>
                         </tr>

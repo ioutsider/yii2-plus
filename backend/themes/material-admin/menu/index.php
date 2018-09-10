@@ -47,8 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= date('Y-m-d H:i:s', $model['created_at']); ?></td>
                             <td><?= date('Y-m-d H:i:s', $model['updated_at']); ?></td>
                             <td>
-                                <a href="<?= Url::to(['menu/sub', 'parent_id' => $model['id']]) ?>">更新</a>
-                                <a href="<?= Url::to(['menu/sub', 'parent_id' => $model['id']]) ?>">删除</a>
+                                <a href="<?= Url::to(['menu/update', 'id' => $model['id']]) ?>">更新</a>
+                                <a href="<?= Url::to(['menu/delete', 'id' => $model['id']]) ?>">删除</a>
                                 <a href="<?= Url::to(['menu/sub', 'parent_id' => $model['id']]) ?>">详情</a>
                             </td>
                         </tr>

@@ -19,7 +19,7 @@ use yii\helpers\Html;
     </div>
 
     <div class="card-body card-padding">
-        <?= Html::beginForm([''], 'post') ?>
+        <?= Html::beginForm('', 'post') ?>
         <div class="form-group">
             <div class="fg-line">
                 <label for="typename">类型名称</label>

@@ -19,7 +19,7 @@ use yii\helpers\Html;
             </small>
         </h2>
     </div>
-    <?= Html::beginForm([''], 'post') ?>
+    <?= Html::beginForm('', 'post') ?>
     <div class="card-body card-padding">
         <form role="form">
             <div class="form-group fg-line">

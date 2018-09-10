@@ -19,6 +19,17 @@ class Menu extends ActiveRecord {
         return '{{%menu}}';
     }
 
+    public function rules() {
+
+        return [
+            ['name', 'unique', 'targetClass' => '\backend\models\Menu', 'message' => '菜单名称不能重复'],
+            ['name', 'required', 'message' => '菜单名称不能为空'],
+            ['url', 'required', 'message' => '访问地址不能为空'],
+            ['slug', 'required', 'message' => '请选择对应的菜单权限'],
+            [['description', 'parent_id'], 'safe']
+        ];
+    }
+
     public function getTopmenus() {
         $menus = Menu::find()
                 ->select(['id', 'description'])
@@ -77,6 +88,20 @@ class Menu extends ActiveRecord {
             }
         }
         return $tree;
+    }
+
+    public function beforeSave($insert) {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($this->isNewRecord) {
+            $this->created_at = time();
+            $this->updated_at = time();
+        } else {
+            $this->updated_at = time();
+        }
+
+        return true;
     }
 
 }

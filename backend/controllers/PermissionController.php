@@ -39,4 +39,33 @@ class PermissionController extends BaseController {
         ]);
     }
 
+    public function actionUpdate($name) {
+
+        $model = $this->findModel($name);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            return $this->redirect(['index']);
+        }
+
+
+        return $this->render('update', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function actionDelete($id) {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    protected function findModel($name) {
+        if (($model = AuthItem::find()->where(['name' => $name])->one()) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('sys', 'The requested page does not exist.'));
+    }
+
 }

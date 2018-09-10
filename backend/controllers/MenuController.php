@@ -13,6 +13,7 @@ use Yii;
 use backend\controllers\BaseController;
 use backend\models\Menu;
 use yii\data\Pagination;
+use yii\web\NotFoundHttpException;
 
 class MenuController extends BaseController {
 
@@ -50,6 +51,31 @@ class MenuController extends BaseController {
         ]);
     }
 
+    public function actionUpdate($id) {
+
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            return $this->redirect(['index']);
+        }
+
+        //查询父级菜单
+        $menu = new Menu;
+        $menus = $menu->getTopmenus();
+        $permission = $menu->getPermission();
+        return $this->render('update', [
+                    'model' => $model,
+                    'menus' => $menus,
+                    'permission' => $permission
+        ]);
+    }
+
+    public function actionDelete($id) {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
     public function actionSub() {
         $parent_id = Yii::$app->request->get('parent_id');
 
@@ -59,6 +85,14 @@ class MenuController extends BaseController {
 //        var_dump($models);
 //        die;
         return $this->render('sub', ['models' => $models]);
+    }
+
+    protected function findModel($id) {
+        if (($model = Menu::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('sys', 'The requested page does not exist.'));
     }
 
 }

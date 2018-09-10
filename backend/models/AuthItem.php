@@ -32,6 +32,15 @@ class AuthItem extends \yii\db\ActiveRecord {
         return '{{%auth_item}}';
     }
 
+    public function rules() {
+
+        return [
+            ['name', 'unique', 'targetClass' => '\backend\models\AuthItem', 'message' => '名称不能重复'],
+            ['name', 'required', 'message' => '名称不能为空'],
+            ['description', 'safe']
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -88,6 +97,20 @@ class AuthItem extends \yii\db\ActiveRecord {
      */
     public function getParents() {
         return $this->hasMany(AuthItem::className(), ['name' => 'parent'])->viaTable('{{%auth_item_child}}', ['child' => 'name']);
+    }
+
+    public function beforeSave($insert) {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        if ($this->isNewRecord) {
+            $this->created_at = time();
+            $this->updated_at = time();
+        } else {
+            $this->updated_at = time();
+        }
+
+        return true;
     }
 
 }

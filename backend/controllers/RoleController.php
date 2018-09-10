@@ -44,20 +44,15 @@ class RoleController extends BaseController {
 
     public function actionAssignment() {
         $roleName = Yii::$app->request->get('name', '');
-        //获取当前角色的权限
+
         $roleList = array_keys(ArrayHelper::toArray(Yii::$app->authManager->getPermissionsByRole($roleName)));
-        //查询权限列表
+
         $permission = new AuthRule;
         $list = $permission->permissionGroupByTypeName();
-//        echo "<pre>";
-//        var_dump($list);
-//        die;
+
         if (Yii::$app->request->isPost) {
             $authrule = new AuthRule;
 
-//            echo "<pre>";
-//            var_dump(Yii::$app->request->post());
-//            die;
             $ret = $authrule->assignRole(Yii::$app->request->post());
 
             if ($ret) {
@@ -69,6 +64,35 @@ class RoleController extends BaseController {
             }
         }
         return $this->render('assignment', ['permissionlist' => $list, 'name' => $roleName, 'roleList' => $roleList]);
+    }
+
+    public function actionUpdate($name) {
+
+        $model = $this->findModel($name);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            return $this->redirect(['index']);
+        }
+
+
+        return $this->render('update', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function actionDelete($id) {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    protected function findModel($name) {
+        if (($model = AuthItem::find()->where(['name' => $name])->one()) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('sys', 'The requested page does not exist.'));
     }
 
 }
