@@ -11,12 +11,8 @@ return [
     'controllerNamespace' => 'api\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-//        'v1' => [
-//            'basePath' => '@app/modules/v1',
-//            'class' => 'api\modules\v1\Module'
-//        ]
         'v1' => [
-            'class' => 'api\modules\v1\Module',
+            'class' => 'api\modules\v1',
         ],
     ],
     'components' => [
@@ -53,7 +49,7 @@ return [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                    [
+                [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
@@ -66,28 +62,7 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
-            'rules' => [
-                    [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'admin',
-                ],
-                    [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'article',
-                    'pluralize' => false,
-                    'extraPatterns' => [
-                        'POST index' => 'index',
-                        'POST send-email' => 'send-email'
-                    ],
-                ],
-                    ['class' => 'yii\rest\UrlRule',
-                    'controller' => 'auth',
-                    'pluralize' => false,
-                    'extraPatterns' => [
-                        'POST login' => 'login',
-                    ]
-                ],
-            ],
+            'rules' =>require dirname(__FILE__) . '/rules.php', 
         ],
     ],
     'params' => $params,

@@ -4,31 +4,26 @@ namespace api\controllers;
 
 use Yii;
 use yii\rest\Controller;
-use common\models\User;
-use common\components\AuthAccessFilter;
 
-class ArticleController extends Controller
-{
+class ArticleController extends Controller {
 
     public $post_data = [];
 
-    public function behaviors()
-    {
-        return [
-            'authAccess' => [
-                'class' => AuthAccessFilter::className(),
-            ]
-        ];
-    }
-
 //
-//
-//    public function init()
+//    public function behaviors()
 //    {
+//        return [
+//            'authAccess' => [
+//                'class' => AuthAccessFilter::className(),
+//            ]
+//        ];
+//    }
 //
 //
+    public function init() {
+
+
 //        $this->post_data = Yii::$app->getRequest()->getBodyParams();
-//
 //        if ($this->post_data['access-token']) {
 //
 //            $user = new User;
@@ -47,12 +42,11 @@ class ArticleController extends Controller
 //            }
 //            die;
 //        }
-//    }
+    }
 
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $data = [
-            'access-token' => $this->post_data['access-token'],
+            'access-token' => '123',
         ];
     }
 
