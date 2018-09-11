@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
 use yii\data\Pagination;
+use backend\tools\Flush;
 
 class AdminController extends BaseController {
 
@@ -39,8 +40,8 @@ class AdminController extends BaseController {
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
 
-
-                return $this->redirect(['view', 'id' => $user->id]);
+                Flush::success('添加成功');
+//                return $this->redirect(['view', 'id' => $user->id]);
             }
         }
         $authrule = new \backend\models\AuthRule;
@@ -56,8 +57,8 @@ class AdminController extends BaseController {
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['view', 'id' => $model->id]);
+            Flush::success('更新成功');
+//            return $this->redirect(['view', 'id' => $model->id]);
         }
 
 
@@ -86,7 +87,8 @@ class AdminController extends BaseController {
         if ($model->load(Yii::$app->request->post())) {
 
             if ($model->resetPassword($id)) {
-                return $this->redirect(['index']);
+                Flush::success('密码重置成功');
+//                return $this->redirect(['index']);
             }
         }
         $authrule = new \backend\models\AuthRule;

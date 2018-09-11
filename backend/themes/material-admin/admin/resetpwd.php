@@ -15,6 +15,17 @@ $this->title = Yii::t('sys', 'reset password');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('sys', 'Admins'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php if (Yii::$app->session->get('msg')) { ?>
+    <div class="alert alert-<?= Yii::$app->session->get('type') ?> alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <?= Yii::$app->session->get('msg') ?>
+    </div>
+    <?php
+    Yii::$app->session->set('msg', '');
+    Yii::$app->session->set('type', '');
+    ?>
+<?php } ?>
+<?= Html::errorSummary($model, ['class' => 'alert alert-danger alert-dismissible', 'role' => 'alert']) ?>
 
 
 <div class="card">
@@ -64,26 +75,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<!--<div class="adminuser-resetpwd">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-
-    <div class="adminuser-form">
-
-<?php $form = ActiveForm::begin(); ?>
-<?= Html::activeDropDownList($model, 'roles', ArrayHelper::map($roles, 'name', 'description'), ['class' => 'chosen', 'multiple' => 'multiple', 'prompt' => '选择角色']) ?>
-<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-
-<?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
-
-        <div class="form-group">
-<?= Html::submitButton(Yii::t('sys', 'reset password'), ['class' => 'btn btn-success']) ?>
-        </div>
-
-<?php ActiveForm::end(); ?>
-
-    </div>
-
-
-</div>-->

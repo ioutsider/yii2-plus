@@ -2,20 +2,43 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
 ?>
 
-<div class="admin-form">
+<div class="card">
+    <div class="card-header">
+        <h2><?= Html::encode($this->title) ?>
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'username')->textInput() ?>
-    <?= $form->field($model, 'email')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('sys', 'Save'), ['class' => 'btn btn-success']) ?>
+        </h2>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <div class="card-body card-padding">
 
+        <?= Html::beginForm('', 'post', ['class' => 'form-horizontal']) ?>
+
+
+        <div class="form-group">
+            <?= Html::activeLabel($model, 'username', ['class' => 'col-sm-2 control-label']) ?>
+            <div class="col-sm-6">
+                <div class="fg-line">
+                    <?= Html::activeInput('text', $model, 'username', ['class' => 'form-control input-sm', 'id' => 'username', 'placeholder' => '请输入用户名']) ?>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <?= Html::activeLabel($model, 'email', ['class' => 'col-sm-2 control-label']) ?>
+            <div class="col-sm-6">
+                <div class="fg-line">
+                    <?= Html::activeInput('email', $model, 'email', ['class' => 'form-control input-sm', 'id' => 'email', 'placeholder' => '请输入电子邮箱地址']) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                <?= Html::submitButton(Yii::t('sys', 'Save'), ['class' => 'btn btn-primary btn-sm waves-effect']) ?>
+
+            </div>
+        </div>
+        <?= Html::endForm(); ?>
+    </div>
 </div>

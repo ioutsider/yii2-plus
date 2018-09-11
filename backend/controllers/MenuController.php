@@ -37,7 +37,7 @@ class MenuController extends BaseController {
         $model = new \backend\models\MenuForm;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->addMenu()) {
-            Yii::$app->session->setFlash('success', 'add menu success.');
+            Flush::success('添加成功');
         }
 
         //查询父级菜单
@@ -56,8 +56,8 @@ class MenuController extends BaseController {
 
         $model = $this->findModel($id);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['index']);
+            Flush::success('更新成功');
+//            return $this->redirect(['index']);
         }
 
         //查询父级菜单

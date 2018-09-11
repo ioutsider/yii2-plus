@@ -34,8 +34,7 @@ class RoleController extends BaseController {
 
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->addRole()) {
-            Yii::$app->session->setFlash('success', 'add role success.');
-//            return $this->redirect(['index']);
+            Flush::success('添加成功');
         }
 
         return $this->render('create', [
@@ -73,7 +72,7 @@ class RoleController extends BaseController {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            return $this->redirect(['index']);
+            Flush::success('更新成功');
         }
 
 

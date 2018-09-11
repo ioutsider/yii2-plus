@@ -5,12 +5,18 @@ $this->title = "添加菜单";
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 ?>
-<?php if (Yii::$app->session->hasFlash('success')): ?>
-    <div class="alert alert-danger alert-dismissible" role="alert">
+<?php if (Yii::$app->session->get('msg')) { ?>
+    <div class="alert alert-<?= Yii::$app->session->get('type') ?> alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <?= Yii::$app->session->getFlash('success') ?>
+        <?= Yii::$app->session->get('msg') ?>
     </div>
-<?php endif; ?>
+    <?php
+    Yii::$app->session->set('msg', '');
+    Yii::$app->session->set('type', '');
+    ?>
+<?php } ?>
+<?= Html::errorSummary($model, ['class' => 'alert alert-danger alert-dismissible', 'role' => 'alert']) ?>
+
 <div class="card">
     <div class="card-header">
         <h2>添加菜单 

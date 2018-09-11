@@ -31,8 +31,7 @@ class PermissionController extends BaseController {
 
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->addPermission()) {
-            Yii::$app->session->setFlash('success', 'add permission success.');
-//            return $this->redirect(['index']);
+            Flush::success('添加成功');
         }
 
         return $this->render('create', [
@@ -45,8 +44,8 @@ class PermissionController extends BaseController {
         $model = $this->findModel($name);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            return $this->redirect(['index']);
+            Flush::success('更新成功');
+//            return $this->redirect(['index']);
         }
 
 

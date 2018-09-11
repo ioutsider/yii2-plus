@@ -3,6 +3,16 @@
 use yii\helpers\Html;
 ?>
 <?= Html::beginForm('', 'post', ['class' => 'form-horizontal']) ?>
+<?php if (Yii::$app->session->get('msg')) { ?>
+    <div class="alert alert-<?= Yii::$app->session->get('type') ?> alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <?= Yii::$app->session->get('msg') ?>
+    </div>
+    <?php
+    Yii::$app->session->set('msg', '');
+    Yii::$app->session->set('type', '');
+    ?>
+<?php } ?>
 <div class="card">
     <div class="card-header">
         <h2>更新角色权限</h2>
