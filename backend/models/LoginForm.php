@@ -8,8 +8,7 @@ use yii\base\Model;
 /**
  * Login form
  */
-class LoginForm extends Model
-{
+class LoginForm extends Model {
 
     public $username;
     public $password;
@@ -19,11 +18,10 @@ class LoginForm extends Model
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             // username and password are both required
-                [['username', 'password'], 'required'],
+            [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -31,8 +29,7 @@ class LoginForm extends Model
         ];
     }
 
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'username' => Yii::t('app', 'username'),
             'rememberMe' => Yii::t('app', 'rememberMe'),
@@ -47,15 +44,14 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword($attribute, $params)
-    {
-        var_dump($this->password . 'aaa');
+    public function validatePassword($attribute, $params) {
+
 
         if (!$this->hasErrors()) {
-            var_dump($this->password . 'bb');
+
 
             $user = $this->getUser();
-           
+
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, Yii::t('app', 'Incorrect username or password.'));
             }
@@ -67,8 +63,7 @@ class LoginForm extends Model
      *
      * @return bool whether the user is logged in successfully
      */
-    public function login()
-    {
+    public function login() {
 
         if ($this->validate()) {
 
@@ -83,8 +78,7 @@ class LoginForm extends Model
      *
      * @return User|null
      */
-    protected function getUser()
-    {
+    protected function getUser() {
         if ($this->_user === null) {
             $this->_user = Admin::findByUsername($this->username);
         }
