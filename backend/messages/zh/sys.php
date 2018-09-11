@@ -21,5 +21,6 @@ return [
     'Created At' => '创建时间',
     'Settings' => '设置',
     'Home' => '主页',
-    'Please wait...' => '努力加载中...'
+    'Please wait...' => '努力加载中...',
+    'Roles' => '权限'
 ];

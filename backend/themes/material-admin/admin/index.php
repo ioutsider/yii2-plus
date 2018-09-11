@@ -1,49 +1,58 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 $this->title = Yii::t('sys', 'Admins');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="card">
+    <div class="card-header">
+        <h2><?= $this->title; ?></h2>
+    </div>
 
-<h2><?= Html::encode($this->title) ?></h2>
-<p>
-    <?= Html::a(Yii::t('sys', 'Create Admin'), ['create'], ['class' => 'btn btn-success waves-effect']) ?>
-</p>
-<?=
-GridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'showHeader' => true,
-    'showFooter' => false,
-//    'tableOptions' => [
-//        
-//    ],
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-        'id',
-        'username',
-        'email:email',
-        'status',
-        [
-            'attribute' => 'created_at',
-            'format' => ['date', 'php:Y-m-d H:i:s'],
-        ],
-        ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {resetpwd}',
-            'buttons' => [
-                'resetpwd' => function($url, $model, $key) {
-                    $options = [
-                        'title' => Yii::t('sys', 'reset password'),
-                        'aria-label' => Yii::t('sys', 'reset password'),
-                        'data-pjax' => '0',
-                    ];
-                    return Html::a('<span class="glyphicon glyphicon-lock"></span>', $url, $options);
-                }
-            ],
-        ],
-    ],
-]);
-?>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>电子邮箱</th>
+                    <th>账号状态</th>
+                    <th>添加时间</th>
+
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php if ($models): ?>
+                    <?php foreach ($models as $k => $model): ?>
+                        <tr>
+                            <td><?= $model['id']; ?></td>
+                            <td><?= $model['username']; ?></td>
+                            <td><?= $model['email']; ?></td>
+                            <td><?= $model['status']; ?></td>
+                            <td><?= date('Y-m-d H:i:s', $model['created_at']); ?></td>
+
+                            <td>
+                                <a href="<?= Url::to(['admin/update', 'id' => $model['id']]) ?>">更新</a>
+                                <a href="<?= Url::to(['admin/delete', 'id' => $model['id']]) ?>">删除</a>
+                                <a href="<?= Url::to(['admin/resetpwd', 'id' => $model['id']]) ?>">密码及权限</a>
+
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="bootgrid-footer container-fluid">
+        <?=
+        LinkPager::widget([
+            'pagination' => $pages,
+        ])
+        ?>
+    </div>
+</div>
 

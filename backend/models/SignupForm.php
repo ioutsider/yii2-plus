@@ -45,6 +45,7 @@ class SignupForm extends Model {
             'password' => Yii::t('sys', 'password'),
             'password_repeat' => Yii::t('sys', 'password repeat'),
             'email' => Yii::t('sys', 'Email'),
+            'roles' => Yii::t('sys', 'Roles'),
         ];
     }
 

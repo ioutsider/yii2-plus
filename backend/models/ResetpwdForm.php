@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\models;
+
 use Yii;
 use yii\base\Model;
 use backend\models\Admin;
@@ -31,6 +32,7 @@ class ResetpwdForm extends Model {
         return [
             'password' => '密码',
             'password_repeat' => '重输密码',
+            'roles' => '用户角色'
         ];
     }
 
