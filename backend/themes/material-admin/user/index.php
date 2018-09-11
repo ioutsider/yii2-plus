@@ -2,6 +2,7 @@
 
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
+use common\models\Lookup;
 
 $this->title = Yii::t('sys', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,11 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model['id']; ?></td>
                             <td><?= $model['username']; ?></td>
                             <td><?= $model['email']; ?></td>
-                            <td><?= $model['status']; ?></td>
+                            <td> <?php echo Lookup::item("UserStatus", $model['status']); ?></td>
                             <td><?= date('Y-m-d H:i:s', $model['created_at']); ?></td>
 
                             <td>
-<!--                                <a href="<?= Url::to(['admin/update', 'id' => $model['id']]) ?>">更新</a>
+        <!--                                <a href="<?= Url::to(['admin/update', 'id' => $model['id']]) ?>">更新</a>
                                 <a href="<?= Url::to(['admin/delete', 'id' => $model['id']]) ?>">删除</a>-->
 
                             </td>
