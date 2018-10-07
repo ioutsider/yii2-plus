@@ -23,6 +23,15 @@ return $rules = [
             'POST send-email' => 'send-email'
         ],
     ],
+    [
+        'class' => 'yii\rest\UrlRule',
+        'controller' => ['v2/article'],
+        'pluralize' => false,
+        'extraPatterns' => [
+            'POST index' => 'index',
+            'POST send-email' => 'send-email'
+        ],
+    ],
     ['class' => 'yii\rest\UrlRule',
         'controller' => 'auth',
         'pluralize' => false,

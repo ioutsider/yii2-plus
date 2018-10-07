@@ -12,8 +12,11 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
-            'class' => 'api\modules\v1',
+            'class' => 'api\modules\v1\Module'
         ],
+        'v2' => [
+            'class' => 'api\modules\v2\Module'
+        ]
     ],
     'components' => [
         'i18n' => [
@@ -62,7 +65,7 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
-            'rules' =>require dirname(__FILE__) . '/rules.php', 
+            'rules' => require dirname(__FILE__) . '/rules.php',
         ],
     ],
     'params' => $params,
